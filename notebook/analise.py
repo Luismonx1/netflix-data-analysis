@@ -48,5 +48,26 @@ ax.spines[['right','left','top','bottom']].set_visible(False)
 ax.grid(axis='x', color='black', alpha=0.5)
 ax.tick_params(axis='both', length=0)
 
+# %%
+
+#Quais os filmes mais recentes e mais antigos adcicionados na Netflix de cada país
+
+df_data_adicao = netflix
+
+df_data_adicao['data_de_adicao'] = df_data_adicao['data_de_adicao'].str.strip()
+df_data_adicao = df_data_adicao[df_data_adicao['data_de_adicao'] != 'Desconhecido']
+
+df_data_adicao['pais'] = df_data_adicao['pais'].str.strip()
+df_data_adicao = df_data_adicao[df_data_adicao['pais'] != 'Desconhecido']
+
+
+df_data_adicao['data_de_adicao'] = pd.to_datetime(df_data_adicao['data_de_adicao'])
+
+df_data_ordenada = df_data_adicao.sort_values(by='data_de_adicao', ascending=True)
+df_data_ordenada = df_data_ordenada[df_data_ordenada['pais'] != '']
+
+
+df_mais_antigo = df_data_ordenada.groupby('pais').first()
+df_mais_recente = df_data_ordenada.groupby('pais').last()
 
 # %%
