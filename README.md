@@ -37,14 +37,13 @@ Contém informações sobre filmes e séries do catálogo da Netflix, como títu
 
 > Conclusão: O catálogo da Netflix de 2000 a 2020 é imensamente dominado pelos Estados Unidos, com uma quantidade de shows muito superior a qualquer país, mais do que o triplo do segundo colocado, a Índia. É importante destacar que aqueles títulos cujo país de origem não estava especificado no dataset original foram excluídos desta análise, já que "país desconhecido" não representa uma categoria geográfica real.
 
+---
 
 ![Gráfico de shows mais antigos e recentes por país](images/datas-antigo-recente-top5.png)
 
 >Conclusão: Entre os cinco países com mais shows no catálogo, os títulos mais recentes adicionados ficam concentrados perto de 2021-2022 para todos eles, o que mostra que a Netflix continua alimentando o catálogo desses países de forma parecida e constante. Já os títulos mais antigos variam bem mais: os Estados Unidos têm presença no catálogo desde 2008, enquanto o Canadá só aparece com força a partir de 2014. Essa análise foi feita com uma amostra dos 5 países com mais shows (os mesmos da pergunta anterior), já que representar todos os mais de 100 países no mesmo gráfico deixaria a visualização poluída e difícil de interpretar.
 
-
-
-
+---
 
 ## 📁 Estrutura do projeto
 ```
