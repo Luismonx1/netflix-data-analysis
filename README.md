@@ -47,6 +47,14 @@ Contém informações sobre filmes e séries do catálogo da Netflix, como títu
 
 ---
 
+### 3. Diretores com mais filmes 
+
+![Gráfico de diretores com mais filmes](images/top10-diretores.png)
+
+>Conclusão: Rajiv Chilaka lidera o ranking de diretores com mais filmes na Netflix, com 22 títulos. Um número bem próximo dos segundos colocados, Jan Suter (21) e Raúl Campos (19), diferente do que aconteceu na análise por país, onde havia uma disparidade grande entre o primeiro e os demais. Essa análise considerou apenas filmes (não séries) e desconsiderou títulos sem diretor listado no dataset original.
+
+---
+
 ## 📁 Estrutura do projeto
 ```
 ├── data/ # dataset original (CSV)

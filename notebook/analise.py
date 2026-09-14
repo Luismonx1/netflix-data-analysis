@@ -25,11 +25,12 @@ netflix = netflix.rename(columns = nomes_portugues)
 
 #Quantidade de Shows por País em um determinado ano de lançamento
 
-netflix['pais'] = netflix['pais'].str.split(',')
-netflix = netflix.explode('pais')
-netflix['pais'] = netflix['pais'].str.strip()
+df_netflix = netflix.copy()
+df_netflix['pais'] = df_netflix['pais'].str.split(',')
+df_netflix = df_netflix.explode('pais')
+df_netflix['pais'] = df_netflix['pais'].str.strip()
 
-netflix_ano = netflix[(netflix['ano_de_lancamento'] >= 2000) & (netflix['ano_de_lancamento'] <= 2020)]
+netflix_ano = df_netflix[(df_netflix['ano_de_lancamento'] >= 2000) & (df_netflix['ano_de_lancamento'] <= 2020)]
 df_ano_pais = netflix_ano.groupby(['ano_de_lancamento', 'pais']).size().reset_index( name = 'quantidade')
 
 df_paises = df_ano_pais.groupby('pais')['quantidade'].sum().reset_index(name='quantidade')
@@ -46,12 +47,14 @@ ax = plt.gca()
 ax.spines[['right','left','top','bottom']].set_visible(False)
 ax.grid(axis='x', color='black', alpha=0.5)
 ax.tick_params(axis='both', length=0)
+ax.invert_yaxis()  # Inverte a ordem do eixo y para que o maior valor fique no topo
+
 
 # %%
 
 #Quais os filmes mais recentes e mais antigos adcicionados na Netflix de cada país
 
-df_data_adicao = netflix
+df_data_adicao = df_netflix.copy()
 
 df_data_adicao['data_de_adicao'] = df_data_adicao['data_de_adicao'].str.strip()
 df_data_adicao = df_data_adicao[df_data_adicao['data_de_adicao'] != 'Desconhecido']
@@ -81,3 +84,28 @@ plt.ylabel('País')
 plt.legend()
 
 # %%
+
+# Quais os Diretores com maiores quantidades de filmes
+
+df_diretores = netflix.copy()
+
+df_diretores['diretor'] = df_diretores['diretor'].str.split(',')
+df_diretores = df_diretores.explode('diretor')
+df_diretores['diretor'] = df_diretores['diretor'].str.strip()
+
+df_diretores = df_diretores[df_diretores['diretor'] != 'Desconhecido']
+df_diretores = df_diretores[df_diretores['tipo'] == 'Movie']
+
+df_diretores = df_diretores.groupby('diretor').size().reset_index(name='quantidade')
+df_diretores_top10 = df_diretores.sort_values(by='quantidade', ascending=False).head(10)
+
+plt.barh(df_diretores_top10['diretor'], df_diretores_top10['quantidade'])
+plt.title('Top 10 Diretores com Mais Filmes na Netflix')
+plt.xlabel('Quantidade de Filmes')
+plt.ylabel('Diretor')
+
+ax = plt.gca()
+ax.spines[['right','left','top','bottom']].set_visible(False)
+ax.grid(axis='x', color='black', alpha=0.5)
+ax.tick_params(axis='both', length=0)
+ax.invert_yaxis()  # Inverte a ordem do eixo y para que o maior valor fique no topo
