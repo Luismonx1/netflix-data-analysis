@@ -39,7 +39,7 @@ Contém informações sobre filmes e séries do catálogo da Netflix, como títu
 
 ---
 
-### 2. Shows mais antigos e recentes por páis
+### 2. Shows mais antigos e recentes por país
 
 ![Gráfico de shows mais antigos e recentes por país](images/datas-antigo-recente-top5.png)
 
